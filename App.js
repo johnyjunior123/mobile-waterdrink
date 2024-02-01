@@ -1,11 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { StyleSheet, Text, View } from 'react-native';
+import LoginScreen from './src/components/auth/LoginScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>This is a world</Text>
-      <StatusBar style="auto" />
+      <LoginScreen />
     </View>
   );
 }
@@ -13,8 +13,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
