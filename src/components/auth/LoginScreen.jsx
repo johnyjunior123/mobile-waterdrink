@@ -9,16 +9,17 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import { Login } from '../../services/auth.service';
 
-export default function LoginScreen() {
-  const [cpf, setCpf] = useState('');
-  const [senha, setSenha] = useState('');
+export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Adicione a lógica de autenticação aqui
-    if (cpf && senha) {
-      // Lógica de login bem-sucedida
+    if (email && password) {
+      Login({ email, password });
     } else {
+      return;
     }
   };
 
@@ -32,25 +33,25 @@ export default function LoginScreen() {
         <View style={styles.input_icon}>
           <BiSolidUser />
           <TextInput
-            value={cpf}
-            placeholder="Digite seu CPF"
-            onChangeText={(text) => setCpf(text)}
+            value={email}
+            placeholder="Digite seu Email"
+            onChangeText={(text) => setEmail(text)}
             style={styles.input}
           />
         </View>
         <View style={styles.input_icon}>
           <FaLock />
           <TextInput
-            value={senha}
-            placeholder="Digite sua senha"
-            onChangeText={(text) => setSenha(text)}
+            value={password}
+            placeholder="Digite sua password"
+            onChangeText={(text) => setPassword(text)}
             secureTextEntry
             style={styles.input}
           />
         </View>
 
-        <TouchableOpacity onPress={() => console.log('Recuperar senha')}>
-          <Text style={styles.link}>Esqueceu a senha?</Text>
+        <TouchableOpacity onPress={() => console.log('Recuperar password')}>
+          <Text style={styles.link}>Esqueceu a password?</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -69,7 +70,7 @@ export default function LoginScreen() {
           marginRight: '1em',
         }}
       >
-        <TouchableOpacity onPress={() => console.log('Cadastrar')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
           <Text style={styles.link}>Não tem uma conta? Cadastre-se</Text>
         </TouchableOpacity>
       </View>
@@ -110,7 +111,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   input: {
-    height: 40,
     padding: 8,
     width: '90%',
   },
